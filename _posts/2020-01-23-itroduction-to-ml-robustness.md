@@ -59,21 +59,18 @@ the model will without a doubt offer wrong predictions (think about incidents re
 ## Regular Binary Classification
 
 Let's summarize a regular training procedure.
-A model, based on some input, makes a hypothesis $ \hat{y} = h_{\theta}(x) $ 
-to predict the correct target $y$, where $ y \in \{ -1, 1\} }$ is in the binary classification.
-The binary loss function can be simplified to the one-argument function $ L(y \cdot \hat{y})$, 
+A model, based on some input, makes a hypothesis $$\hat{y} = h_{\theta}(x)$$ 
+to predict the correct target $$y$$, where $$y \in \{ -1, 1\}$$ is in the binary classification.
+The binary loss function can be simplified to the one-argument function $$ L(y \cdot \hat{y})$$, 
 and we can use the elegant hinge loss, which is known as the soft-margin in the SVM.
 To fully satisfy the loss, the model has to not only ideally separate classes 
 but also preserve a sufficient margin between them 
 (figures code [left](plots/hinge_loss.py) and [right](plots/hinge_margin.py)).
 
-<p align="middle">
-<img src="plots/hinge_loss.png" width="400" alt=""/>
-<img src="plots/hinge_margin.png" width="400" alt=""/> 
-</p>
+![Hinge loss and margin](/images/2020-01-23/hinge_loss_margin.png)
 
-For our experiment, we use a simple linear classifier, so the model has only a single vector $w$ and bias $b$. 
-The landscape of loss in terms of $x_i$ for non-linear models is highly irregular 
+For our experiment, we use a simple linear classifier, so the model has only a single vector $$w$$ and bias $$b$$. 
+The landscape of loss in terms of $$x_i$$ for non-linear models is highly irregular 
 (left figure, code [here](plots/landscape_complex.py)), however in our case, 
 it is just a straight line (right figure, code [here](plots/landscape_simple.py)).
 
@@ -82,18 +79,19 @@ it is just a straight line (right figure, code [here](plots/landscape_simple.py)
 <img src="plots/landscape_simple.png" width="400" alt=""/> 
 </p>
 
-Using a dataset and an optimization method gradient descent, we follow the gradient and look for the model parameters, 
+Using a dataset and an optimization method gradient descent, we follow the gradient and look for the model parameters,
 which minimize the loss function:
 
-$$ \min_{w,b} \frac{1}{D} \sum_{(x,y) \in D} L (y \cdot (w^Tx + b)) $$
+$$\min_{w,b} \frac{1}{D} \sum_{(x,y) \in D} L (y \cdot (w^Tx + b))$$
 
 Super straightforward, right?
 This is our regular training.
 We minimize the expected value of the loss.
 Therefore, the model is looking for any (even weak) correlations, 
-which improve the performance on average (no matter how disastrous its predictions sometimes are). 
+which improve the performance on average(no matter how disastrous its predictions sometimes are).
 
-$$ \min_{\theta} \underset{(x,y) \in D} {\mathbb{E}} \big\[ \ell ( h_{\theta}(x), y ) \big\] $$
+$$ \min_{\theta} \underset{(x,y) \in D} {\mathbb{E}} \ell ( h_{\theta}(x), y )$$
+
 
 <br/>
 
@@ -101,23 +99,22 @@ $$ \min_{\theta} \underset{(x,y) \in D} {\mathbb{E}} \big\[ \ell ( h_{\theta}(x)
 
 As we mentioned in the introduction, ML models (deep neural networks in particular) are sensitive to small changes.
 Therefore now, we allow the input to be perturbed a little bit.
-We are not interested in patterns which concern $x$ exclusively but the delta neighbourhood around $x$. 
+We are not interested in patterns which concern $$x$$ exclusively but the delta neighbourhood around $$x$$. 
 In consequence, we face the min-max problem, and two related challenges.
 
 $$ \min_{w,b} \frac{1}{D} \sum_{(x,y) \in D} \max_{\delta \in \Delta} L (y \cdot (w^T(x+ \delta) + b)) $$
 
-<br/>
 
-Firstly, how can we construct valid perturbations $ \Delta $?
-We want to formulate a space (epsilon-neighbourhood) around $x$ (figure below, code [here](plots/perturbation_boxes.py)), 
+Firstly, how can we construct valid perturbations $$ \Delta $$?
+We want to formulate a space (epsilon-neighbourhood) around $$x$$ (figure below, code [here](plots/perturbation_boxes.py)), 
 which sustains human understanding about this space. 
-In our case, if a point $x$ describes the digit one, then we have to guarantee that each perturbation $x+\delta$ 
+In our case, if a point $$x$$ describes the digit one, then we have to guarantee that each perturbation $$x+\delta$$ 
 looks like the digit one. 
 We do not know how to do this formally. 
 However, we can (sure enough) assume that the small norm perturbations are correct 
-$\Delta = \{ \delta : || \delta || \leq \epsilon \}$. 
-In our experiments, we are using the infinity norm $|| \cdot ||_\infty$ (others are common too). 
-These tiny boxes are neat, because valid perturbations are in the range $−\epsilon$ to $\epsilon$, 
+$$\Delta = \{ \delta : || \delta || \leq \epsilon \}$$. 
+In our experiments, we are using the infinity norm $$|| \cdot ||_\infty$$ (others are common too). 
+These tiny boxes are neat, because valid perturbations are in the range $$−\epsilon$$ to $$\epsilon$$, 
 independent of dimension.
 
 <p align="middle">
@@ -131,7 +128,7 @@ Most advanced ML models are highly non-linear, so this is tough in general.
 There are several methods to approximate the solution (a lower or upper bound), 
 which we are going to cover in upcoming blog posts. 
 Hopefully, in the linear case, we can easily solve this exactly 
-because the loss directly depends on $x$, our simplified loss landscape 
+because the loss directly depends on $$x$$, our simplified loss landscape 
 (formal details [here](https://adversarial-ml-tutorial.org/linear_models/)). 
 
 $$ \min_{w,b} \frac{1}{D} \sum_{(x,y) \in D} L \left(y \cdot (w^Tx + b) − \epsilon \|w\|_1 \right ) $$
@@ -139,7 +136,7 @@ $$ \min_{w,b} \frac{1}{D} \sum_{(x,y) \in D} L \left(y \cdot (w^Tx + b) − \eps
 <br/>
 
 The basic intuition is that we do not penalize high weights, 
-which are far from the decision boundary (in contrast to regularization $L_1$).
+which are far from the decision boundary (in contrast to regularization $$L_1$$).
 However, this is far from a complete explanation. 
 
 Firstly, the loss does not penalize if a classifier makes a mistake 
@@ -157,8 +154,8 @@ Secondly, the back propagation is different (right figure, code [here](plots/lan
 The gradient is not only diminished, but also if it is smaller than epsilon, it can even change the sign. 
 As a result, the weights that are smaller than epsilon are gently wiped off. 
 
-Finally, our goal is to minimize the expected value of the loss not only of input $x$, 
-but the entire subspace around $x$:
+Finally, our goal is to minimize the expected value of the loss not only of input $$x$$, 
+but the entire subspace around $$x$$:
 
 $$ \min_{\theta} \underset{(x,y) \in D} {\mathbb{E}} \big \[ \max_{\delta \in \Delta} \ell ( h_{\theta}(x), y ) \big \] $$
 
@@ -207,7 +204,7 @@ def train_step(inputs, targets):        # Inject dependencies: a model, loss, an
 <br/>
 
 The robust training is similar. 
-The crucial change is the customized loss, which contains additionally $− \epsilon \|w\|_1$ term. 
+The crucial change is the customized loss, which contains additionally $$− \epsilon \|w\|_1$$ term. 
 More details are [here](experiment_robust.py).
 
 ```python
@@ -281,7 +278,7 @@ where we check out several epsilons (figure below, code [here](plots/accuracy_no
 As we expect, the regular model is brittle due to the huge amount of weak features. 
 Below, we present the misclassified samples which are closest to the boundary decision 
 (predicted logits are around zero, figure code [here](plots/misclassified_noise.py)). 
-Now, we can understand how perturbed images are so readable to humans  e.g. $\epsilon=0.2$ 
+Now, we can understand how perturbed images are so readable to humans  e.g. $$\epsilon=0.2$$ 
 where the regular classifier has the accuracy around zero. 
 The regular classifier absolutely does not know what the digit zero or one looks like. 
 In contrast, robust models are generally confused about the different digit structures, nonetheless, 
