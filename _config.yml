@@ -1,0 +1,54 @@
+# Site wide configuration
+
+title: Rafał Rolczyński — personal homepage
+locale: en_US
+url: https://rolczynski.github.io  #TODO: https://rafalrolczynski.com and in CNAME "rafalrolczynski.com"
+
+# Jekyll configuration
+
+permalink:   /:categories/:year/:month/:day/:title/
+markdown:    kramdown
+highlighter: rouge
+#paginate: 10
+#paginate_path: "_site/index/blog/page:num/"
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+  - jekyll-gist
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: false
+
+# Default extensions
+post_ext: md
+page_ext: md
+
+# Found in _templates/
+post_layout: post
+page_layout: page
+
+# Format titles with titlecase?
+titlecase: true
+
+# Site owner
+owner:
+  name: Rafał Rolczyński
+  avatar: personal-black-white.png
+  bio: Machine Learning Researcher
+  email: rafal.rolczynski@gmail.com
+#  disqus-shortname:
+#  google:
+#    analytics:
+#    verify:
+#    ad-client:
+#    ad-slot:
+  github: rolczynski
+  linkedin: rafal-rolczynski
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
