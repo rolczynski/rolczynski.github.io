@@ -1,6 +1,6 @@
 # Site wide configuration
 
-title: Rafał Rolczyński — personal homepage
+title: Blog - Rafał Rolczyński
 locale: en_US
 url: https://rolczynski.github.io  #TODO: https://rafalrolczynski.com and in CNAME "rafalrolczynski.com"
 
@@ -39,7 +39,7 @@ titlecase: true
 # Site owner
 owner:
   name: Rafał Rolczyński
-  avatar: personal-black-white.png
+  avatar: personal/personal-black-white.png
   bio: Machine Learning Researcher
   email: rafal.rolczynski@gmail.com
 #  disqus-shortname:
