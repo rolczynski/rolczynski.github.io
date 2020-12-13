@@ -1,4 +1,3 @@
-
 ---
 layout: page
 excerpt: "The personal website of Rafał Rolczyński"
