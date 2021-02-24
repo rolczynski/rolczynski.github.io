@@ -12,4 +12,8 @@ Add a submodule and a symlink pointing to the `Articles` repository
 ```shell script
 git submodule add -b master https://github.com/rolczynski/Articles
 git mv Articles _posts
+# and update:
+git submodule update --rebase --remote
+# and commit changes
+git add _posts
 ```
