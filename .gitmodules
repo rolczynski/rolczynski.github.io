@@ -1,0 +1,4 @@
+[submodule "Articles"]
+	path = _posts
+	url = https://github.com/rolczynski/Articles
+	branch = master
