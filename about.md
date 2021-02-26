@@ -5,5 +5,6 @@ tags: [Rafał Rolczyński, rolczynski, homepage]
 share: false
 ---
 
-I am Machine Learning Engineer/Researcher. I have worked on both industrial and academic projects for startup companies,
-tech giants, and public sector institutions on a wide range of topics from natural language processing to speech recognition.
+hey 👋 I am super happy that you are here where I am trying to show up my perspective on lovely Machine Learning.
+I have worked on a wide range of topics from natural language processing to speech recognition.
+The work with complex models is exciting but, at most, I like rediscover and deeply understand basic concepts.
