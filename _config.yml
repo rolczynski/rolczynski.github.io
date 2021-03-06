@@ -1,11 +1,9 @@
 # Site wide configuration
-
 title: Blog - Rafał Rolczyński
 locale: en_US
 url: https://rolczynski.github.io
 
 # Jekyll configuration
-
 permalink:   /:categories/:year/:month/:day/:title/
 markdown:    kramdown
 highlighter: rouge
@@ -33,7 +31,7 @@ page_ext: md
 post_layout: post
 page_layout: page
 
-# Format titles with titlecase?
+# Format titles with title case
 titlecase: true
 
 # Site owner
@@ -42,12 +40,7 @@ owner:
   avatar: personal/personal-black-white.png
   bio: Machine Learning Researcher
   email: rafal.rolczynski@gmail.com
-#  disqus-shortname:
-#  google:
-#    analytics:
-#    verify:
-#    ad-client:
-#    ad-slot:
+  disqus-shortname: rafalrolczynski-com
   github: rolczynski
   linkedin: rafal-rolczynski
 include: [".htaccess"]
