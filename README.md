@@ -5,6 +5,8 @@ The website was built with Jekyll and the *Minimal Mistakes* theme (by [Michael 
 To test locally:
 ```shell script
 bundle exec jekyll serve
+# Run in the production mode if needed:
+#   JEKYLL_ENV=production bundle exec jekyll serve
 ```
 
 Add a submodule and a symlink pointing to the `Articles` repository 

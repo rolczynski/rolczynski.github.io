@@ -29,8 +29,8 @@
 
 <!-- HTML5 Shiv and Media Query Support -->
 <!--[if lt IE 9]>
-	<script src="{{ site.url }}/assets/js/vendor/html5shiv.min.js"></script>
-	<script src="{{ site.url }}/assets/js/vendor/respond.min.js"></script>
+<script src="{{ site.url }}/assets/js/vendor/html5shiv.min.js"></script>
+<script src="{{ site.url }}/assets/js/vendor/respond.min.js"></script>
 <![endif]-->
 
 <!-- Modernizr -->
@@ -38,6 +38,11 @@
 
 <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
 
+<!-- Mathjax Support -->
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
-<!-- Added mathjax -->
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+{% if site.google.analytics and jekyll.environment == 'production' %}
+    {% include _analytics.html %}
+{% endif %}
